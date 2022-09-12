@@ -1,37 +1,35 @@
 <?php require_once("conexao/conexao.php");
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["user_portal"])){
-    header("location:login.php");
-}
-//exclusão
-if(isset($_POST["idProduto"])){
-    $pid = $_POST["idProduto"];
-    $exclusao = "DELETE FROM produto where idProduto = {$pid}";
-    $consulta_exclusao = mysqli_query($conecta,$exclusao);
-    if (!$consulta_exclusao){
-        die("erro no banco");
+    if (!isset($_SESSION["user_portal"])){
+        header("location:login.php");
+    }
+    //exclusão
+    if(isset($_POST["idProduto"])){
+        $pid = $_POST["idProduto"];
+        $exclusao = "DELETE FROM produto where idProduto = {$pid}";
+        $consulta_exclusao = mysqli_query($conecta,$exclusao);
+        if (!$consulta_exclusao){
+            die("erro no banco");
+        }else{
+            $exclusao_lance = "DELETE FROM lance where idProduto = {$pid}";
+            $consulta_exclusao = mysqli_query($conecta,$exclusao_lance);
+            header("location:listagem.php");
+        }
+    }
+    //consulta
+    if (isset($_GET["codigo"])){
+        $id = $_GET["codigo"];
+        $prod_del = "SELECT * FROM produto WHERE idProduto = {$id}";
+        $consulta_prod = mysqli_query($conecta,$prod_del);
+        if (!$consulta_prod){
+            die("erro no banco");
+        }
     }else{
-        $exclusao_lance = "DELETE FROM lance where idProduto = {$pid}";
-        $consulta_exclusao = mysqli_query($conecta,$exclusao_lance);
         header("location:listagem.php");
     }
-}
-//consulta
-if (isset($_GET["codigo"])){
-    $id = $_GET["codigo"];
-    $prod_del = "SELECT * FROM produto WHERE idProduto = {$id}";
-    $consulta_prod = mysqli_query($conecta,$prod_del);
-    if (!$consulta_prod){
-        die("erro no banco");
-    }
-}else{
-    header("location:listagem.php");
-}
-$info_produto = mysqli_fetch_assoc($consulta_prod);
-
-
+    $info_produto = mysqli_fetch_assoc($consulta_prod);
 ?>
 
 <!doctype html>

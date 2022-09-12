@@ -51,9 +51,9 @@
             <div id="detalhe_produto">
                  <img src="<?php echo $imagem ?>"><br><br>
                 <ul>
-                    <li><h2><?php echo $nomeproduto ?></h2></li>
-                    <li><b>Descrição: </b><?php echo $descricao ?></li>
-                    <li><b>Preço : </b><?php echo real_format($valorproduto) ?></li>
+                    <li><h2><?php echo $nomeproduto ?></h2></li><br>
+                    <li><b>Descrição: </b><?php echo $descricao ?></li><br>
+                    <li><b>Preço : </b><?php echo real_format($valorproduto) ?></li><br>
                     <?php
                         if (intval($idade_cliente) >= 18){?>
                         <a href="lance.php?codigo=<?php echo $produto_id?>"><b>Dar Lance</b></a><br>

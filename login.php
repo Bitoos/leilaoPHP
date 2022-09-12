@@ -30,7 +30,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login em Pudim eCommerce</title>
+        <title>Login em Leilão</title>
         
         <!-- estilo -->
         <link href="_css/estilo.css" rel="stylesheet">
